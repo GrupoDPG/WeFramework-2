@@ -60,6 +60,14 @@ $rs->get('/(:params+)', function() use ($rs, $router) {
             //URL da aplicação, excluido a url base
             define('WE_URI_PROJECT', $router->GetUriProject());
 
+            /*
+             * Página atual de navegação
+             */
+            $page = \helpers\weframework\components\request\Request::Get()->Get(0);
+            if(empty($page))
+                $page = WE_THEME_PAGE_INDEX;
+            define('WE_PAGE', $page);
+
 
             //Walking URL - Caso seja um tema, descartamos o controller
             if(WE_IS_HOT_THEME)
@@ -135,6 +143,13 @@ $rs->post('/(:params+)', function() use ($rs, $router) {
             //URL da aplicação, excluido a url base
             define('WE_URI_PROJECT', $router->GetUriProject());
 
+            /*
+             * Página atual de navegação
+             */
+            $page = \helpers\weframework\components\request\Request::Get()->Get(0);
+            if(empty($page))
+                $page = WE_THEME_PAGE_INDEX;
+            define('WE_PAGE', $page);
 
             //Walking URL - Caso seja um tema, descartamos o controller
             if(WE_IS_HOT_THEME)
