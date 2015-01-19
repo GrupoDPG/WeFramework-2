@@ -51,6 +51,8 @@ $rs->get('/(:params+)', function() use ($rs, $router) {
             define('WE_PACKAGE_PATH', APP_BASEPATH . 'package' . DS . ((WE_PACKAGE != '') ? WE_PACKAGE . DS : ''));
             //Definindo constante para a URL Base
             define('WE_BASE_URL', $router->BaseURL());
+            //Wrapper
+            define('WE_WRAPPER', \core\router\Router::$configuration['wrapper']);
             //Definido a URL original definido no arquivo de configuração
             define('WE_REAL_BASE_URL', $router->BaseURL(false));
             //Definindo constante para página inicial do tema
@@ -139,6 +141,8 @@ $rs->post('/(:params+)', function() use ($rs, $router) {
             define('WE_PACKAGE_PATH', APP_BASEPATH . 'package' . DS . ((WE_PACKAGE != '') ? WE_PACKAGE . DS : ''));
             //Definindo constante para a URL Base
             define('WE_BASE_URL', $router->BaseURL());
+            //Wrapper
+            define('WE_WRAPPER', \core\router\Router::$configuration['wrapper']);
             //Definido a URL original definido no arquivo de configuração
             define('WE_REAL_BASE_URL', $router->BaseURL(false));
             //Definindo constante para página inicial do tema

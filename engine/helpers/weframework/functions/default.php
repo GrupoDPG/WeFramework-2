@@ -71,12 +71,14 @@ function GetHeader()
  */
 function GetContent()
 {
+
     //Recuperando instância da classe Layout
     $lay = \core\layout\Layout::GetInstance();
     //Retonrnado o diretório do tema principal
     $main_theme = $lay->GetDirTheme();
     //Arquivo para include
     $file = $main_theme . 'inc' . DS . 'base' . DS. 'content.php';
+
     //Imprimindo arquivo
     echo TemplateContent($file);
 }
@@ -163,7 +165,12 @@ function BaseUrl()
  */
 function ThemeBaseUrl()
 {
-    return 'http://'.$_SERVER['HTTP_HOST'].'/'.WE_REAL_BASE_URL.'/layout/themes/'.((WE_THEME != '') ? WE_THEME . '/' : '');
+    return WE_WRAPPER . '://'.$_SERVER['HTTP_HOST'].'/'. WE_REAL_BASE_URL . ((WE_REAL_BASE_URL != '') ? '/' : '') .'layout/themes/'.((WE_THEME != '') ? WE_THEME . '/' : '');
+}
+
+function RealBaseUrl()
+{
+    return WE_WRAPPER . '://'.$_SERVER['HTTP_HOST'].'/'. WE_REAL_BASE_URL . ((WE_REAL_BASE_URL != '') ? '/' : '');
 }
 
 /**
@@ -249,4 +256,89 @@ function MenuActive($page, $class)
 {
     if(RequirePage($page))
         echo $class;
+}
+
+/**
+ * PrettyUrl
+ * @param $string
+ * @return mixed|string
+ */
+function PrettyUrl($string)
+{
+
+    $final = strtolower($string);
+    $final = str_replace("’", "-", $final);
+    $final = str_replace("?", "", $final);
+    $final = str_replace("!", "", $final);
+    $final = str_replace(".", "", $final);
+    $final = str_replace("/", "", $final);
+    $final = str_replace("#", "", $final);
+    $final = str_replace("@", "", $final);
+    $final = str_replace(":", "", $final);
+    $final = str_replace(" ", "-", $final);
+    $final = str_replace("&", "e", $final);
+    $final = str_replace(",", "", $final);
+    $final = str_replace(";", "", $final);
+
+    $final = str_replace("á", "a", $final);
+    $final = str_replace("à", "a", $final);
+    $final = str_replace("â", "a", $final);
+    $final = str_replace("ä", "a", $final);
+    $final = str_replace("ã", "a", $final);
+
+    $final = str_replace("é", "e", $final);
+    $final = str_replace("è", "e", $final);
+    $final = str_replace("ê", "e", $final);
+    $final = str_replace("ë", "e", $final);
+
+    $final = str_replace("í", "i", $final);
+    $final = str_replace("ì", "i", $final);
+    $final = str_replace("î", "i", $final);
+    $final = str_replace("ï", "i", $final);
+
+    $final = str_replace("ó", "o", $final);
+    $final = str_replace("ò", "o", $final);
+    $final = str_replace("ô", "o", $final);
+    $final = str_replace("ö", "o", $final);
+    $final = str_replace("õ", "o", $final);
+
+    $final = str_replace("ú", "u", $final);
+    $final = str_replace("ù", "u", $final);
+    $final = str_replace("û", "u", $final);
+    $final = str_replace("ü", "u", $final);
+
+    $final = str_replace("Á", "A", $final);
+    $final = str_replace("À", "A", $final);
+    $final = str_replace("Â", "A", $final);
+    $final = str_replace("Ã", "A", $final);
+    $final = str_replace("Ä", "A", $final);
+
+    $final = str_replace("É", "E", $final);
+    $final = str_replace("È", "E", $final);
+    $final = str_replace("Ê", "E", $final);
+    $final = str_replace("Ë", "E", $final);
+
+    $final = str_replace("Í", "I", $final);
+    $final = str_replace("Ì", "I", $final);
+    $final = str_replace("Î", "I", $final);
+    $final = str_replace("Ï", "I", $final);
+
+    $final = str_replace("Ó", "O", $final);
+    $final = str_replace("Ò", "O", $final);
+    $final = str_replace("Ô", "O", $final);
+    $final = str_replace("Õ", "O", $final);
+    $final = str_replace("Ö", "O", $final);
+
+    $final = str_replace("Ú", "U", $final);
+    $final = str_replace("Ù", "U", $final);
+    $final = str_replace("Û", "U", $final);
+    $final = str_replace("Ü", "U", $final);
+
+    $final = str_replace("ç", "c", $final);
+    $final = str_replace("ñ", "n", $final);
+
+    $final = str_replace("Ç", "C", $final);
+    $final = str_replace("Ñ", "N", $final);
+
+    return $final;
 }
