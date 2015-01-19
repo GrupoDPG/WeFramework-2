@@ -66,6 +66,11 @@ $rs->get('/(:params+)', function() use ($rs, $router) {
             $page = \helpers\weframework\components\request\Request::Get()->Get(0);
             if(empty($page))
                 $page = WE_THEME_PAGE_INDEX;
+            else
+            {
+                if(WE_IS_HOT_THEME)
+                    $page = \helpers\weframework\components\request\Request::Get()->Get(1);
+            }
             define('WE_PAGE', $page);
 
 
@@ -149,6 +154,11 @@ $rs->post('/(:params+)', function() use ($rs, $router) {
             $page = \helpers\weframework\components\request\Request::Get()->Get(0);
             if(empty($page))
                 $page = WE_THEME_PAGE_INDEX;
+            else
+            {
+                if(WE_IS_HOT_THEME)
+                    $page = \helpers\weframework\components\request\Request::Get()->Get(1);
+            }
             define('WE_PAGE', $page);
 
             //Walking URL - Caso seja um tema, descartamos o controller
