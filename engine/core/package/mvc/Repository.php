@@ -66,6 +66,9 @@ abstract class Repository
     {
         $this->DabaBaseConfig();
         $this->SetDataBase();
+
+        if(!isset($this->DB))
+            $this->DBConnect();
     }
 
     /**
