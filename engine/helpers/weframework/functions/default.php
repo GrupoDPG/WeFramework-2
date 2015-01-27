@@ -178,9 +178,30 @@ function ThemeBaseUrl()
     return WE_WRAPPER . '://'.$_SERVER['HTTP_HOST'].'/'. WE_REAL_BASE_URL . ((WE_REAL_BASE_URL != '') ? '/' : '') .'layout/themes/'.((WE_THEME != '') ? WE_THEME . '/' : '');
 }
 
+/**
+ * RealBaseUrl
+ * @return string
+ */
 function RealBaseUrl()
 {
     return WE_WRAPPER . '://'.$_SERVER['HTTP_HOST'].'/'. WE_REAL_BASE_URL . ((WE_REAL_BASE_URL != '') ? '/' : '');
+}
+
+/**
+ * @return string
+ */
+function GetRealBaseUrl()
+{
+    $url = '/' . WE_REAL_BASE_URL . ((WE_REAL_BASE_URL != '') ? '/' : '');
+    $alias = '';
+    if(WE_IS_HOT_THEME)
+    {
+        if(WE_THEME_ALIAS_NAME != '')
+            $alias = WE_THEME_ALIAS_NAME . '/';
+        else
+            $alias = WE_THEME . '/';
+    }
+    return $url . $alias;
 }
 
 /**
