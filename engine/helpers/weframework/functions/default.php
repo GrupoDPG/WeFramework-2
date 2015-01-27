@@ -159,6 +159,16 @@ function BaseUrl()
 }
 
 /**
+ * GetThemeBaseUrl
+ * Caminho absoluto do tema
+ * @return string
+ */
+function GetThemeBaseUrl()
+{
+    return '/' . WE_REAL_BASE_URL . ((WE_REAL_BASE_URL != '') ? '/' : '') . 'layout/themes/'.((WE_THEME != '') ? WE_THEME . '/' : '');
+}
+
+/**
  * ThemeBaseUrl
  * Retorna  a URL do tema atual
  * @return string
