@@ -117,13 +117,18 @@ class Auth
             if(!self::Auth() && !RequirePage(WE_SECURITY_AUTH_PAGE))
             {
                 if(Session::Get('WE_AUTH_USER_LOGOUT') === false && Session::Get('WE_AUTH_TIME') < (time() + 86400))
-                    Session::Set('WE_AUTH_ERROR', 'Sessão expirada.');
+                {
+                    $referer = parse_url($_SERVER['HTTP_REFERER']);
+                    if($referer['host'] != $_SERVER['HTTP_HOST'])
+                        Session::Set('WE_AUTH_ERROR', 'Sessão expirada.');
+                }
 
-                header('Location: ' . BaseUrl() . WE_SECURITY_AUTH_PAGE);
+                if(WE_PAGE != WE_SECURITY_AUTH_PAGE)
+                    header('Location: ' . RealBaseUrl() . WE_SECURITY_AUTH_PAGE);
             }
             elseif(self::Auth() && RequirePage(WE_SECURITY_AUTH_PAGE) && WE_SECURITY_AUTH_PAGE != WE_THEME_PAGE_INDEX)
             {
-                header('Location: ' . BaseUrl() . WE_THEME_PAGE_INDEX);
+                header('Location: ' . RealBaseUrl() . WE_THEME_PAGE_INDEX);
             }
         }
     }
