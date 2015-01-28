@@ -118,9 +118,12 @@ class Auth
             {
                 if(Session::Get('WE_AUTH_USER_LOGOUT') === false && Session::Get('WE_AUTH_TIME') < (time() + 86400))
                 {
-                    $referer = parse_url($_SERVER['HTTP_REFERER']);
-                    if($referer['host'] != $_SERVER['HTTP_HOST'])
-                        Session::Set('WE_AUTH_ERROR', 'Sessão expirada.');
+                    if(isset($_SERVER['HTTP_REFERER']))
+                    {
+                        $referer = parse_url($_SERVER['HTTP_REFERER']);
+                        if(isset($referer['host']) != $_SERVER['HTTP_HOST'])
+                            Session::Set('WE_AUTH_ERROR', 'Sessão expirada.');
+                    }
                 }
 
                 if(WE_PAGE != WE_SECURITY_AUTH_PAGE)
@@ -138,21 +141,19 @@ class Auth
      */
     public function Logout()
     {
-        Session::Destroy('WE_AUTH_ERROR');
-        Session::Destroy('WE_AUTH_TIME');
-        Session::Destroy('WE_AUTH_TOKEN');
+        Session::DestroyAll();
         Session::Set('WE_AUTH_USER_LOGOUT', true);
 
         if(WE_SECURITY_AUTH)
         {
-            header('Location: ' . BaseUrl() . WE_SECURITY_AUTH_PAGE);
+            header('Location: ' . RealBaseUrl() . WE_SECURITY_AUTH_PAGE);
         }
     }
 
     /**
      * @return bool
      */
-    private static function Auth()
+    public static function Auth()
     {
         if(defined('WE_SECURITY_AUTH') && defined('WE_SECURITY_AUTH_PAGE'))
         {
