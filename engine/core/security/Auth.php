@@ -139,7 +139,7 @@ class Auth
     /**
      * Logout
      */
-    public function Logout()
+    public static function Logout()
     {
         Session::DestroyAll();
         Session::Set('WE_AUTH_USER_LOGOUT', true);

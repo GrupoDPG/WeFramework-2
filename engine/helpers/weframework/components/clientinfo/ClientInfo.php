@@ -50,7 +50,12 @@ class ClientInfo
                 if(isset($info) && isset($binfo[$info]))
                     return $binfo[$info];
                 else
-                    $binfo;
+                {
+                    foreach($binfo as $value)
+                        $info .= $value;
+
+                    $binfo = $info;
+                }
             }
             else
             {
