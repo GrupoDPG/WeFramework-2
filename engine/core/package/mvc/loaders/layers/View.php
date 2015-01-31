@@ -20,10 +20,11 @@ class View
      *
      * @param $view
      * @param $data
+     * @param $ws
      */
-    public function Load($view, $data)
+    public function Load($view, $data, $ws)
     {
         $mvc = new \mvc\View();
-        $mvc->SetView($view, $data);
+        $mvc->SetView($view, $data, $ws);
     }
 }

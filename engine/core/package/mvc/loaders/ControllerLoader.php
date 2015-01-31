@@ -113,14 +113,15 @@ class ControllerLoader
      *
      * @param $view
      * @param $data
+     * @param $ws
      */
-    public function View($view, $data)
+    public function View($view, $data, $ws = false)
     {
         if($this->flag_load === true)
         {
             $this->SetStatus(true);
             $layer = new View();
-            $layer->Load($view, $data);
+            $layer->Load($view, $data, $ws);
 
         }
         else

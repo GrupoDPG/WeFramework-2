@@ -77,3 +77,48 @@
 [11-Dec-2014 15:25:37 America/Sao_Paulo] PHP Warning:  utf8_encode() expects parameter 1 to be string, array given in C:\wamp\www\dpg-framework-2\engine\helpers\weframework\components\encrypt\Encrypt.php on line 87
 [11-Dec-2014 15:25:37 America/Sao_Paulo] PHP Warning:  utf8_encode() expects parameter 1 to be string, array given in C:\wamp\www\dpg-framework-2\engine\helpers\weframework\components\encrypt\Encrypt.php on line 87
 [11-Dec-2014 15:34:41 America/Sao_Paulo] PHP Fatal error:  Call to undefined method helpers\weframework\components\decrypt\Decrypt::EncryptString() in C:\wamp\www\dpg-framework-2\engine\helpers\weframework\components\decrypt\Decrypt.php on line 48
+[31-Jan-2015 11:55:09 America/Sao_Paulo] PHP Fatal error:  core\router\Webservice and helpers\weframework\classes\Config define the same property ($configuration) in the composition of core\router\Webservice. However, the definition differs and is considered incompatible. Class was composed in C:\wamp\www\weframework-2\engine\core\router\Webservice.php on line 32
+[31-Jan-2015 11:55:09 America/Sao_Paulo] PHP Stack trace:
+[31-Jan-2015 11:55:09 America/Sao_Paulo] PHP   1. {main}() C:\wamp\www\weframework-2\index.php:0
+[31-Jan-2015 11:55:09 America/Sao_Paulo] PHP   2. include_once() C:\wamp\www\weframework-2\index.php:123
+[31-Jan-2015 11:55:09 America/Sao_Paulo] PHP   3. core\init\Service->InitServices() C:\wamp\www\weframework-2\engine\core\init\Init.php:47
+[31-Jan-2015 11:55:09 America/Sao_Paulo] PHP   4. include_once() C:\wamp\www\weframework-2\engine\core\init\Service.php:111
+[31-Jan-2015 11:55:09 America/Sao_Paulo] PHP   5. spl_autoload_call() C:\wamp\www\weframework-2\engine\core\init\Service.php:3
+[31-Jan-2015 11:55:09 America/Sao_Paulo] PHP   6. core\autoload\Autoloader->CoreAutoloader() C:\wamp\www\weframework-2\engine\core\init\Service.php:0
+[31-Jan-2015 11:55:09 America/Sao_Paulo] PHP   7. include_once() C:\wamp\www\weframework-2\engine\core\autoload\Autoload.php:41
+[31-Jan-2015 12:10:36 America/Sao_Paulo] PHP Notice:  Undefined index: webservice in C:\wamp\www\weframework-2\engine\core\router\Webservice.php on line 37
+[31-Jan-2015 12:10:36 America/Sao_Paulo] PHP Stack trace:
+[31-Jan-2015 12:10:36 America/Sao_Paulo] PHP   1. {main}() C:\wamp\www\weframework-2\index.php:0
+[31-Jan-2015 12:10:36 America/Sao_Paulo] PHP   2. include_once() C:\wamp\www\weframework-2\index.php:123
+[31-Jan-2015 12:10:36 America/Sao_Paulo] PHP   3. core\init\Service->InitServices() C:\wamp\www\weframework-2\engine\core\init\Init.php:47
+[31-Jan-2015 12:10:36 America/Sao_Paulo] PHP   4. include_once() C:\wamp\www\weframework-2\engine\core\init\Service.php:111
+[31-Jan-2015 12:10:36 America/Sao_Paulo] PHP   5. core\router\Webservice->WSActive() C:\wamp\www\weframework-2\engine\core\init\services\webservice.php:6
+[31-Jan-2015 12:10:36 America/Sao_Paulo] PHP Notice:  Undefined index: ws_encode in C:\wamp\www\weframework-2\engine\core\router\Webservice.php on line 69
+[31-Jan-2015 12:10:36 America/Sao_Paulo] PHP Stack trace:
+[31-Jan-2015 12:10:36 America/Sao_Paulo] PHP   1. {main}() C:\wamp\www\weframework-2\index.php:0
+[31-Jan-2015 12:10:36 America/Sao_Paulo] PHP   2. include_once() C:\wamp\www\weframework-2\index.php:123
+[31-Jan-2015 12:10:36 America/Sao_Paulo] PHP   3. core\init\Service->InitServices() C:\wamp\www\weframework-2\engine\core\init\Init.php:47
+[31-Jan-2015 12:10:36 America/Sao_Paulo] PHP   4. include_once() C:\wamp\www\weframework-2\engine\core\init\Service.php:111
+[31-Jan-2015 12:10:36 America/Sao_Paulo] PHP   5. core\router\Webservice->WSEncode() C:\wamp\www\weframework-2\engine\core\init\services\webservice.php:12
+[31-Jan-2015 13:33:24 America/Sao_Paulo] PHP Warning:  Missing argument 3 for mvc\loaders\layers\View::Load(), called in C:\wamp\www\weframework-2\engine\core\package\mvc\loaders\ControllerLoader.php on line 123 and defined in C:\wamp\www\weframework-2\engine\core\package\mvc\loaders\layers\View.php on line 25
+[31-Jan-2015 13:33:24 America/Sao_Paulo] PHP Stack trace:
+[31-Jan-2015 13:33:24 America/Sao_Paulo] PHP   1. {main}() C:\wamp\www\weframework-2\index.php:0
+[31-Jan-2015 13:33:24 America/Sao_Paulo] PHP   2. include_once() C:\wamp\www\weframework-2\index.php:123
+[31-Jan-2015 13:33:24 America/Sao_Paulo] PHP   3. core\init\Service->InitServices() C:\wamp\www\weframework-2\engine\core\init\Init.php:47
+[31-Jan-2015 13:33:24 America/Sao_Paulo] PHP   4. include_once() C:\wamp\www\weframework-2\engine\core\init\Service.php:111
+[31-Jan-2015 13:33:24 America/Sao_Paulo] PHP   5. core\layout\Render->RenderApp() C:\wamp\www\weframework-2\engine\core\init\services\render.php:27
+[31-Jan-2015 13:33:24 America/Sao_Paulo] PHP   6. core\layout\Render->RenderWs() C:\wamp\www\weframework-2\engine\core\layout\Render.php:206
+[31-Jan-2015 13:33:24 America/Sao_Paulo] PHP   7. home\controller\Home->Call() C:\wamp\www\weframework-2\engine\core\layout\Render.php:311
+[31-Jan-2015 13:33:24 America/Sao_Paulo] PHP   8. mvc\loaders\ControllerLoader->View() C:\wamp\www\weframework-2\application\package\home\controller\Home.php:65
+[31-Jan-2015 13:33:24 America/Sao_Paulo] PHP   9. mvc\loaders\layers\View->Load() C:\wamp\www\weframework-2\engine\core\package\mvc\loaders\ControllerLoader.php:123
+[31-Jan-2015 13:33:24 America/Sao_Paulo] PHP Notice:  Undefined variable: ws in C:\wamp\www\weframework-2\engine\core\package\mvc\loaders\layers\View.php on line 27
+[31-Jan-2015 13:33:24 America/Sao_Paulo] PHP Stack trace:
+[31-Jan-2015 13:33:24 America/Sao_Paulo] PHP   1. {main}() C:\wamp\www\weframework-2\index.php:0
+[31-Jan-2015 13:33:24 America/Sao_Paulo] PHP   2. include_once() C:\wamp\www\weframework-2\index.php:123
+[31-Jan-2015 13:33:24 America/Sao_Paulo] PHP   3. core\init\Service->InitServices() C:\wamp\www\weframework-2\engine\core\init\Init.php:47
+[31-Jan-2015 13:33:24 America/Sao_Paulo] PHP   4. include_once() C:\wamp\www\weframework-2\engine\core\init\Service.php:111
+[31-Jan-2015 13:33:24 America/Sao_Paulo] PHP   5. core\layout\Render->RenderApp() C:\wamp\www\weframework-2\engine\core\init\services\render.php:27
+[31-Jan-2015 13:33:24 America/Sao_Paulo] PHP   6. core\layout\Render->RenderWs() C:\wamp\www\weframework-2\engine\core\layout\Render.php:206
+[31-Jan-2015 13:33:24 America/Sao_Paulo] PHP   7. home\controller\Home->Call() C:\wamp\www\weframework-2\engine\core\layout\Render.php:311
+[31-Jan-2015 13:33:24 America/Sao_Paulo] PHP   8. mvc\loaders\ControllerLoader->View() C:\wamp\www\weframework-2\application\package\home\controller\Home.php:65
+[31-Jan-2015 13:33:24 America/Sao_Paulo] PHP   9. mvc\loaders\layers\View->Load() C:\wamp\www\weframework-2\engine\core\package\mvc\loaders\ControllerLoader.php:123

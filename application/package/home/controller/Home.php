@@ -57,4 +57,11 @@
                 $this->Load()->View('index|home', array('welcome_message' => $welcome_message));
             }
         }
+
+        public function Call()
+        {
+            $this->Load()->View('home/call', array(
+                'test' => 'Testing...'
+            ), true);
+        }
     }

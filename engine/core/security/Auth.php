@@ -162,7 +162,18 @@ class Auth
                 return Decrypt::Blowfish(self::GenerateHashString(), Session::Get('WE_AUTH_TOKEN'));
             }
         }
-
         return false;
+    }
+
+    /**
+     * Verifica se o usuário está autenticado
+     * @return bool
+     */
+    public static function IsAuth()
+    {
+        if(self::Auth() === false)
+            return false;
+
+        return true;
     }
 }

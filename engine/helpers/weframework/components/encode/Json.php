@@ -1,0 +1,15 @@
+<?php
+namespace helpers\weframework\components\encode;
+
+class Json implements  IEncode
+{
+    public static function Encode($data)
+    {
+        return json_encode($data);
+    }
+
+    public static function Decode($data)
+    {
+        return json_decode($data);
+    }
+}

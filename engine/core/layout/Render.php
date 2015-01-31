@@ -13,6 +13,10 @@ namespace core\layout;
 
 
 use core\exceptions\RenderException;
+use core\security\Auth;
+use helpers\weframework\components\encode\Json;
+use helpers\weframework\components\request\Request;
+use helpers\weframework\components\webservice\Webservice;
 use mvc\View;
 use core\router\Router;
 use helpers\weframework\classes\Singleton;
@@ -196,92 +200,132 @@ class Render
 
     public function RenderApp()
     {
-        /*
-         * MC - Model & Controller
+        /**
+         * Check Webservice Render
          */
-        if(WE_MODE == 'application')
+        if((WE_WS_AUTH && Auth::IsAuth() || WE_WS_AUTH === false) && WE_WS_ACTIVE && WE_PAGE == WE_WS_ROUTE)
         {
-            //Controller
-            if(is_file(Package::GetInstance()->GetControllerFile()))
+            $this->RenderWs();
+        }
+        else
+        {
+            /*
+             * MC - Model & Controller
+             */
+            if(WE_MODE == 'application')
             {
-                if(defined('WE_CONTROLLER'))
+                //Controller
+                if(is_file(Package::GetInstance()->GetControllerFile()))
                 {
-
-                    //Renderizando MVC
-                    $controller_class = ltrim(WE_PACKAGE . '\\' . WE_CONTROLLER . '\\' . 'controller\\' . ucfirst(WE_CONTROLLER), '\\');
-
-                    if(class_exists($controller_class))
+                    if(defined('WE_CONTROLLER'))
                     {
-                        //Controller
-                        $controller = new $controller_class();
-                        $reflection = new \ReflectionClass($controller);
+                        //Renderizando MVC
+                        $controller_class = ltrim(WE_PACKAGE . '\\' . WE_CONTROLLER . '\\' . 'controller\\' . ucfirst(WE_CONTROLLER), '\\');
 
-                        //Método index
-                        //Ex: http://dominio.com.br
-                        if(!Router::GetInstance()->GetArg(0) && !Router::GetInstance()->GetArg(1))
+                        if(class_exists($controller_class))
                         {
-                            if($reflection->hasMethod('Index'))
-                            {
-                                $reflection_method = $reflection->getMethod('Index');
-                                if($reflection_method->isPublic() && $reflection_method->class == $controller_class)
-                                {
-                                    $controller->Index();
+                            //Controller
+                            $controller = new $controller_class();
+                            $reflection = new \ReflectionClass($controller);
 
+                            //Método index
+                            //Ex: http://dominio.com.br
+                            if(!Router::GetInstance()->GetArg(0) && !Router::GetInstance()->GetArg(1))
+                            {
+                                if($reflection->hasMethod('Index'))
+                                {
+                                    $reflection_method = $reflection->getMethod('Index');
+                                    if($reflection_method->isPublic() && $reflection_method->class == $controller_class)
+                                    {
+                                        $controller->Index();
+                                    }
                                 }
                             }
-                        }
-                        //Ex: http://dominio.com.br/controller
-                        elseif(Router::GetInstance()->GetArg(0)
-                            && ucfirst(Router::GetInstance()->GetArg(0)) == ucfirst(WE_CONTROLLER)
-                            && !Router::GetInstance()->GetArg(1)
-                        )
-                        {
-
-                            if($reflection->hasMethod('Index'))
+                            //Ex: http://dominio.com.br/controller
+                            elseif(Router::GetInstance()->GetArg(0)
+                                && ucfirst(Router::GetInstance()->GetArg(0)) == ucfirst(WE_CONTROLLER)
+                                && !Router::GetInstance()->GetArg(1)
+                            )
                             {
 
-                                $reflection_method = $reflection->getMethod('Index');
-                                if($reflection_method->isPublic() && $reflection_method->class == $controller_class)
+                                if($reflection->hasMethod('Index'))
                                 {
-                                    $controller->Index();
+
+                                    $reflection_method = $reflection->getMethod('Index');
+                                    if($reflection_method->isPublic() && $reflection_method->class == $controller_class)
+                                    {
+                                        $controller->Index();
+                                    }
                                 }
                             }
-                        }
-                        //Ex: http://dominio.com.br/controller/method
-                        elseif(Router::GetInstance()->GetArg(0)
-                            && Router::GetInstance()->GetArg(1)
-                            && ucfirst(Router::GetInstance()->GetArg(0)) == ucfirst(WE_CONTROLLER)
-                        )
-                        {
-                            $method = ucfirst(Router::GetInstance()->GetArg(1));
-                            if($reflection->hasMethod($method))
+                            //Ex: http://dominio.com.br/controller/method
+                            elseif(Router::GetInstance()->GetArg(0)
+                                && Router::GetInstance()->GetArg(1)
+                                && ucfirst(Router::GetInstance()->GetArg(0)) == ucfirst(WE_CONTROLLER)
+                            )
                             {
-                                $reflection_method = $reflection->getMethod($method);
-                                if($reflection_method->isPublic() && $reflection_method->class == $controller_class)
+                                $method = ucfirst(Router::GetInstance()->GetArg(1));
+                                if($reflection->hasMethod($method))
                                 {
-
-                                    $controller->$method();
+                                    $reflection_method = $reflection->getMethod($method);
+                                    if($reflection_method->isPublic() && $reflection_method->class == $controller_class)
+                                    {
+                                        $controller->$method();
+                                    }
                                 }
                             }
                         }
                     }
                 }
+
             }
+            //Theme template index
+            if(isset(self::$render_theme))
+            {
+                $data_view = View::GetInstance()->GetDataView();
+                if(count($data_view) > 0)
+                    extract($data_view);
 
+                include_once self::$render_theme;
+            }
+            else
+            {
+                throw new RenderException('Fail to render theme. Theme not defined.');
+            }
         }
+    }
 
-        //Theme template index
-        if(isset(self::$render_theme))
+    private function RenderWs()
+    {
+        $controller = Request::Get()->Get(1);
+        $method = ucfirst(Request::Get()->Get(2));
+        if(isset($controller) && isset($method) && !empty($method))
         {
-            $data_view = View::GetInstance()->GetDataView();
-            if(count($data_view) > 0)
-                extract($data_view);
-
-            include_once self::$render_theme;
+            $controller_class = ltrim(WE_PACKAGE . '\\' . $controller . '\\' . 'controller\\' . ucfirst($controller), '\\');
+            if(class_exists($controller_class))
+            {
+                //Controller
+                $controller = new $controller_class();
+                $reflection = new \ReflectionClass($controller);
+                if($reflection->hasMethod(ucfirst($method)))
+                {
+                    $method = ucfirst($method);
+                    $controller->$method();
+                    $data_view = View::GetInstance()->GetDataView();
+                    echo Webservice::Encode($data_view);
+                }
+                elseif($reflection->hasMethod(lcfirst($method)))
+                {
+                    $method = lcfirst($method);
+                    $controller->$method();
+                    $data_view = View::GetInstance()->GetDataView();
+                    echo Webservice::Encode($data_view);
+                }
+            }
         }
         else
         {
-            throw new RenderException('Fail to render theme. Theme not defined.');
+            echo Webservice::Encode('Invalid call!');
         }
     }
 

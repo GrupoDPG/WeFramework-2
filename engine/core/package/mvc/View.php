@@ -67,12 +67,22 @@ class View
      *
      * @param $view
      * @param $data
+     * @param $ws
      */
-    public function SetView($view, $data)
+    public function SetView($view, $data, $ws)
     {
-        if($this->RequirePage($view))
+        if($ws && WE_WS_ACTIVE && WE_PAGE == WE_WS_ROUTE)
         {
             self::$data_view = $data;
+        }
+        else
+        {
+            if($this->RequirePage($view))
+            {
+                self::$data_view = $data;
+            }
+            else
+                header('Location: '. WE_WRAPPER . '://' .$_SERVER['HTTP_HOST'] . '/' .WE_REAL_BASE_URL . '/404');
         }
     }
 
