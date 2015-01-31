@@ -14,6 +14,7 @@
     use helpers\weframework\components\encrypt\Encrypt;
     use helpers\weframework\components\log\Log;
     use helpers\weframework\components\session\Session;
+    use helpers\weframework\components\webservice\Webservice;
     use \mvc\Controller;
 
     class Home extends Controller
