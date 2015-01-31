@@ -12,7 +12,7 @@ if(is_dir($save_path))
     }
     else
     {
-        $template_log = '['.date('d-M-Y H:i:s').' '.date_default_timezone_get().'] Framework error: ./application/session is not writable. Can not session files.' . PHP_EOL;
+        $template_log = '['.@date('d-M-Y H:i:s').' '.@date_default_timezone_get().'] Framework error: ./application/session is not writable. Can not session files.' . PHP_EOL;
         error_log($template_log, 0);
     }
 }
