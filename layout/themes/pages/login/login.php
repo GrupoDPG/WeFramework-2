@@ -1,5 +1,6 @@
 <div class="jumbotron">
     <h1>Olá.</h1>
+    <p>Para testar a autenticação, ative este recurso no arquivo de configuração themes.ini</p>
     <p class="lead">Este é um exemplo de autenticação, forneça qualquer usuário ou senha para cirar um token de acesso.</p>
 </div>
 <?php
