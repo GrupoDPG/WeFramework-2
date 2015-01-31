@@ -58,6 +58,10 @@
             }
         }
 
+        /**
+         * Exemplo com o WE Webservice
+         * Acesse: seuhost/webservice/home/call
+         */
         public function Call()
         {
             $this->Load()->View('home/call', array(
