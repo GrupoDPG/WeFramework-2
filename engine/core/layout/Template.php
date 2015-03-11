@@ -17,19 +17,19 @@ class Template
     /**
      * Compile
      * Compila página HTML e retorna o conteúdo do arquivo
-     * @param $file
+     * @param $weCompileFile
      * @param null $data
      * @return string
      */
-    public function Compile($file, $data = null)
+    public function Compile($weCompileFile, $data = null)
     {
-        if(is_file($file))
+        if(is_file($weCompileFile))
         {
             if(isset($data))
                 extract($data, EXTR_REFS);
 
             ob_start();
-            include_once $file;
+            include_once $weCompileFile;
             return ob_get_clean();
         }
 

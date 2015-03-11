@@ -290,6 +290,21 @@ function MenuActive($page, $class)
 }
 
 /**
+ * Url Amigável
+ * @param $string
+ * @return mixed|string
+ */
+function mountUrl($string)
+{
+    $clean = iconv('UTF-8', 'ASCII//TRANSLIT', $string);
+    $clean = preg_replace("/[^a-zA-Z0-9\/_| -]/", '', $clean);
+    $clean = strtolower(trim($clean, '-'));
+    $clean = preg_replace("/[\/_| -]+/", '-', $clean);
+
+    return $clean;
+}
+
+/**
  * PrettyUrl
  * @param $string
  * @return mixed|string
