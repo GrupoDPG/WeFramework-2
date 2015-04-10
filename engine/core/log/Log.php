@@ -80,6 +80,21 @@ class Log
     }
 
     /**
+     * LogFramework
+     * @return string
+     */
+    public static function LogEmail()
+    {
+        self::Config();
+
+        if(isset(self::$log_config['log_email']))
+            return self::$log_config['log_email'];
+
+        return 'email.log';
+    }
+
+
+    /**
      * LogApplication
      * @return string
      */

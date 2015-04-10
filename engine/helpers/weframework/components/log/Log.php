@@ -62,6 +62,30 @@ class Log
      * @param null $destination
      * @param null $extra_headers
      */
+    public static function LogEmail($message , $message_type = 3, $destination = null, $extra_headers = null)
+    {
+        $layout = '['.date('d-M-Y H:i:s').' '.date_default_timezone_get().'] E-mail error: ';
+
+        if(isset($destination) && !is_writable($destination))
+        {
+            error_log($layout . './application/logs is not writable. Can not crate log files.', 0);
+            error_log($layout . $message . PHP_EOL, 0);
+        }
+        else
+        {
+            if(!isset($destination))
+                $destination = CLog::LogPath() . CLog::LogEmail();
+
+            error_log($layout . $message . PHP_EOL, $message_type, $destination, $extra_headers);
+        }
+    }
+
+    /**
+     * @param $message
+     * @param int $message_type
+     * @param null $destination
+     * @param null $extra_headers
+     */
     public static function LogApplication($message , $message_type = 3, $destination = null, $extra_headers = null)
     {
         $layout = '['.date('d-M-Y H:i:s').' '.date_default_timezone_get().'] Application error: ';
