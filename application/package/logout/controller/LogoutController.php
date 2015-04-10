@@ -11,15 +11,15 @@
 
 namespace logout\controller;
 
+use logout\model\LogoutModel;
 use \mvc\Controller;
-use logout\model\Logout as mLogout;
 
-class Logout extends Controller
+class LogoutController extends Controller
 {
 
     public function Index()
     {
-        $logout = new mLogout();
+        $logout = new LogoutModel();
         $logout->Logout();
     }
 }

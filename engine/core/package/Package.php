@@ -156,7 +156,7 @@ class Package
      */
     private function SetControllerFile()
     {
-        $controller_file = $this->controller_path . ucfirst($this->controller) . '.php';
+        $controller_file = $this->controller_path . ucfirst($this->controller) . 'Controller.php';
         if(is_file($controller_file))
         {
             self::$controller_file = $controller_file;

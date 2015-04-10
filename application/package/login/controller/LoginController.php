@@ -14,17 +14,17 @@ namespace login\controller;
 use helpers\weframework\components\alert\Alert;
 use helpers\weframework\components\request\Request;
 use helpers\weframework\components\session\Session;
+use login\model\LoginModel;
 use \mvc\Controller;
-use login\model\Login as mLogin;
 
-class Login extends Controller
+class LoginController extends Controller
 {
 
     public function Index()
     {
         if(Request::Post()->IsPost())
         {
-            $login = new mLogin();
+            $login = new LoginModel();
             $login->Auth();
         }
         else

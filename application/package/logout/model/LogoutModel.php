@@ -4,7 +4,7 @@ namespace logout\model;
 use \mvc\Model;
 use core\security\Auth;
 
-class Logout extends Model
+class LogoutModel extends Model
 {
    public function Logout()
    {

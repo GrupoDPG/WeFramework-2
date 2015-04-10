@@ -93,6 +93,7 @@ class Render
      * Render
      * Renderiza arquivos na fila
      *
+     * @param $get_file
      * @access public
      * @return bool
      */
@@ -104,7 +105,7 @@ class Render
     /**
      * DefaultRender
      * Renerização padrão
-     *
+     * @param $file
      * @access private
      * @return bool
      */
@@ -220,7 +221,7 @@ class Render
                     if(defined('WE_CONTROLLER'))
                     {
                         //Renderizando MVC
-                        $controller_class = ltrim(WE_PACKAGE . '\\' . WE_CONTROLLER . '\\' . 'controller\\' . ucfirst(WE_CONTROLLER), '\\');
+                        $controller_class = ltrim(WE_PACKAGE . '\\' . WE_CONTROLLER . '\\' . 'controller\\' . ucfirst(WE_CONTROLLER) . 'Controller', '\\');
 
                         if(class_exists($controller_class))
                         {
@@ -301,7 +302,7 @@ class Render
         $method = ucfirst(Request::Get()->Get(2));
         if(isset($controller) && isset($method) && !empty($method))
         {
-            $controller_class = ltrim(WE_PACKAGE . '\\' . $controller . '\\' . 'controller\\' . ucfirst($controller), '\\');
+            $controller_class = ltrim(WE_PACKAGE . '\\' . $controller . '\\' . 'controller\\' . ucfirst($controller) . 'Controller', '\\');
             if(class_exists($controller_class))
             {
                 //Controller

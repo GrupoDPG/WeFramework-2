@@ -11,7 +11,7 @@
 namespace home\controller;
 use \mvc\Controller;
 
-class Home extends Controller
+class HomeController extends Controller
 {
     /**
      * Index
@@ -38,8 +38,8 @@ class Home extends Controller
      */
     public function Index()
     {
-
-        $this->Load()->Model('Home', 'HomeModel');
+        $this->Load()->Model('HomeModel');
+        //Or $model = new \home\model\HomeModel
 
         //Verifica se outras camadas foram carregadas
         if($this->Loaded())
@@ -55,7 +55,7 @@ class Home extends Controller
 
     /**
      * Exemplo com o WE Webservice
-     * Acesse: seuhost/webservice/home/call
+     * Acesse: domain/webservice/home/call
      */
     public function Call()
     {

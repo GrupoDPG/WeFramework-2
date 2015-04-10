@@ -7,7 +7,7 @@ use core\security\Auth;
 use helpers\weframework\components\alert\Alert;
 use helpers\weframework\components\request\Request;
 
-class Login extends Model
+class LoginModel extends Model
 {
     public function Auth()
     {

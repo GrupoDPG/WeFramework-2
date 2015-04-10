@@ -4,7 +4,7 @@
     use helpers\weframework\components\log\Log;
     use \mvc\Model;
 
-    class Home extends Model
+    class HomeModel extends Model
     {
         public function Welcome()
         {

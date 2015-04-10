@@ -15,7 +15,7 @@
     use \mvc\Controller;
     use Respect\Validation\Validator;
 
-    class Test extends Controller
+    class TestController extends Controller
     {
         /**
          * Index
