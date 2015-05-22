@@ -14,19 +14,19 @@ define('WECON_BASEPATH', __DIR__ . WECON_DS);
  * Application PATH
  * Indice o caminho do diretório application do weframework2
  */
-define('WECON_APP', '/../application/');
+define('WECON_APP', '/../../application/');
 
 /**
  * Engine PATH
  * Indice o caminho do diretório engine do weframework2
  */
-define('WECON_ENGINE', '/../engine/');
+define('WECON_ENGINE', '/../../engine/');
 
 /**
  * Layout PATH
  * Indice o caminho do diretório layout do weframework2
  */
-define('WECON_LAYOUT', '/../layout/');
+define('WECON_LAYOUT', '/../../layout/');
 
 /**
  * Definindo caminho de diretórios absoluto
