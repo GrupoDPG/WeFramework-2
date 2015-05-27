@@ -142,3 +142,7 @@
 [10-Apr-2015 17:45:37 America/Sao_Paulo] PHP Notice:  Undefined variable: message in C:\wamp\www\dpg-framework-2\engine\helpers\weframework\components\email\layout\default.php on line 8
 [10-Apr-2015 18:25:30 America/Sao_Paulo] PHP Notice:  Undefined variable: controller_class in C:\wamp\www\dpg-framework-2\engine\core\layout\Render.php on line 204
 [10-Apr-2015 18:27:50 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected ';' in C:\wamp\www\dpg-framework-2\engine\core\layout\Render.php on line 219
+[27-May-2015 13:02:16 America/Sao_Paulo] PHP Notice:  Uninitialized string offset: 0 in C:\wamp\www\dpg-framework-2\engine\vendor\composer\ClassLoader.php on line 293
+[27-May-2015 13:02:16 America/Sao_Paulo] PHP Notice:  Uninitialized string offset: 0 in C:\wamp\www\dpg-framework-2\engine\vendor\composer\ClassLoader.php on line 322
+[27-May-2015 13:03:48 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected 'die' (T_EXIT) in C:\wamp\www\dpg-framework-2\engine\core\package\mvc\Controller.php on line 54
+[27-May-2015 13:46:51 America/Sao_Paulo] PHP Fatal error:  Call to undefined function mvc\dei() in C:\wamp\www\dpg-framework-2\engine\core\package\mvc\Controller.php on line 41

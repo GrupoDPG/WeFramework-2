@@ -65,6 +65,10 @@ class Get
         return null;
     }
 
+
+    /**
+     * @return mixed
+     */
     private function UrlParamName()
     {
         $routes = $this->GetFileConfig('routes.ini');

@@ -10,6 +10,8 @@
  */
 namespace mvc;
 
+use helpers\weframework\components\request\Request;
+
 abstract class Controller
 {
     public function Load()
@@ -21,6 +23,57 @@ abstract class Controller
     {
         return \mvc\loaders\ControllerLoader::GetInstance()->Loaded();
     }
+
+    public function AddController($route, $controller, $method = null)
+    {
+        $controller_name = $controller;
+        if(preg_match('@^'.$route.'@', WE_URI_PROJECT))
+        {
+            $controller = $this->getClass($controller);
+            if(isset($controller) && $controller instanceof Controller)
+            {
+                if(isset($method) && method_exists($controller, $method))
+                    $controller->$method();
+                else
+                {
+                    $url = Request::Get()->GetAll();
+                    $class_method = Request::Get()->Get(count($url) - 1);
+                    if(strpos($route, $class_method) !== false)
+                    {
+                        if(method_exists($controller, 'Index'))
+                            $controller->Index();
+                        elseif(method_exists($controller, 'index'))
+                            $controller->index();
+                    }
+                    else
+                    {
+                        if(isset($class_method) && method_exists($controller, $class_method))
+                            $controller->$class_method();
+                    }
+                }
+            }
+            else
+                die('The controller ' . $controller_name . ' must be a Controller type.');
+        }
+    }
+
+
+    private function getClass($controller)
+    {
+        $controller = str_replace('/', '\\', $controller);
+        $controller = '\\' . ltrim($controller, '\\');
+
+        if(strpos($controller, '.php') === false)
+            $controller = $controller . '.php';
+
+        $namespace = str_replace('.php', '', $controller);
+
+        if(class_exists($namespace))
+            return new $namespace;
+
+        return null;
+    }
+
 
     public function __get($varname)
     {

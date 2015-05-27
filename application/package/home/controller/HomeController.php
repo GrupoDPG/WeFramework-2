@@ -14,6 +14,23 @@ use \mvc\Controller;
 class HomeController extends Controller
 {
     /**
+     * __construct
+     * Adicione controladores auxiliares
+     * @example
+     * param 1 = route
+     * param 2 = controller
+     * param 3 = metthod NULL
+     * $this->AddController('home/hello', '/home/controller/HelloController');
+     * $this->AddController('home/abc/dfg/uhul', '/home/controller/HelloController', 'say');
+     */
+    public function __construct()
+    {
+
+        $this->AddController('home/hello', '/home/controller/HelloController');
+        $this->AddController('home/abc/dfg/uhul', '/home/controller/HelloController', 'say');
+    }
+
+    /**
      * Index
      * Carregamento inicial - método pincipal
      *
