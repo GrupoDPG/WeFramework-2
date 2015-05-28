@@ -14,6 +14,8 @@ use helpers\weframework\components\request\Request;
 
 abstract class Controller
 {
+    private $flag = false;
+
     public function Load()
     {
         return \mvc\loaders\ControllerLoader::GetInstance()->Load();
@@ -26,34 +28,39 @@ abstract class Controller
 
     public function AddController($route, $controller, $method = null)
     {
-        $controller_name = $controller;
-        if(preg_match('@^'.$route.'@', WE_URI_PROJECT))
+        if($this->flag === false)
         {
-            $controller = $this->getClass($controller);
-            if(isset($controller) && $controller instanceof Controller)
+            $controller_name = $controller;
+            if(preg_match('@^'.$route.'@', WE_URI_PROJECT))
             {
-                if(isset($method) && method_exists($controller, $method))
-                    $controller->$method();
-                else
+                $controller = $this->getClass($controller);
+                if(isset($controller) && $controller instanceof Controller)
                 {
-                    $url = Request::Get()->GetAll();
-                    $class_method = Request::Get()->Get(count($url) - 1);
-                    if(strpos($route, $class_method) !== false)
-                    {
-                        if(method_exists($controller, 'Index'))
-                            $controller->Index();
-                        elseif(method_exists($controller, 'index'))
-                            $controller->index();
-                    }
+                    if(isset($method) && method_exists($controller, $method))
+                        $controller->$method();
                     else
                     {
-                        if(isset($class_method) && method_exists($controller, $class_method))
-                            $controller->$class_method();
+                        $url = Request::Get()->GetAll();
+                        $class_method = Request::Get()->Get(count($url) - 1);
+                        if(strpos($route, $class_method) !== false)
+                        {
+                            if(method_exists($controller, 'Index'))
+                                $controller->Index();
+                            elseif(method_exists($controller, 'index'))
+                                $controller->index();
+                        }
+                        else
+                        {
+                            if(isset($class_method) && method_exists($controller, $class_method))
+                                $controller->$class_method();
+                        }
+
+                        $this->flag = true;
                     }
                 }
+                else
+                    die('The controller ' . $controller_name . ' must be a Controller type.');
             }
-            else
-                die('The controller ' . $controller_name . ' must be a Controller type.');
         }
     }
 
