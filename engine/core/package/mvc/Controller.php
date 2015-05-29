@@ -46,8 +46,9 @@ abstract class Controller
                         $uri = implode('/', $url);
                         $route_uri = trim(str_replace($route, '', $uri), '/');
                         $url = explode('/', $route_uri);
-                        $class_method = $url[(count($url) - 2)];
-                        if(strpos($route, $class_method) !== false)
+                        $class_method = $url[0];
+
+                        if(empty($class_method))
                         {
                             if(method_exists($controller, 'Index'))
                                 $controller->Index();
@@ -59,7 +60,6 @@ abstract class Controller
                             if(isset($class_method) && method_exists($controller, $class_method))
                                 $controller->$class_method();
                         }
-
                         $this->flag = true;
                     }
                 }
