@@ -5,9 +5,7 @@
 </div>
 <?php
 if(isset($message))
-{
     echo $message;
-}
 ?>
 <div class="col-md-12">
     <form role="form" method="post">
