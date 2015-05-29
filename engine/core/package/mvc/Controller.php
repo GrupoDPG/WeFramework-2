@@ -40,8 +40,13 @@ abstract class Controller
                         $controller->$method();
                     else
                     {
+                        //URL
                         $url = Request::Get()->GetAll();
-                        $class_method = Request::Get()->Get(count($url) - 1);
+                        //Define url
+                        $uri = implode('/', $url);
+                        $route_uri = trim(str_replace($route, '', $uri), '/');
+                        $url = explode('/', $route_uri);
+                        $class_method = $url[(count($url) - 2)];
                         if(strpos($route, $class_method) !== false)
                         {
                             if(method_exists($controller, 'Index'))
