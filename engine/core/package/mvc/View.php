@@ -89,6 +89,7 @@ class View
     public function RequirePage($url_page)
     {
         $original_uri = strtolower(WE_URI_PROJECT);
+        $url_page = strtolower($url_page);
 
         //Verificamos se a requisão é para a página inicial
         if($url_page == 'index' && $original_uri == '')
