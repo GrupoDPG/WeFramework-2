@@ -6,6 +6,13 @@ namespace helpers\weframework\components\request;
  */
 class Post
 {
+    private static $save_data = false;
+
+    public function saveData()
+    {
+        self::$save_data = true;
+    }
+
     /**
      * IsPost
      * Método repossável para verificar se existe $_POST
@@ -47,10 +54,11 @@ class Post
      * @param $key
      * @return null|string
      */
-    public function ValueOf($key)
+    public static function ValueOf($key)
     {
-        if(isset($_POST[$key]))
-            return $_POST[$key];
+        if(self::$save_data === true)
+            if(isset($_POST[$key]))
+                return $_POST[$key];
 
         return null;
     }
