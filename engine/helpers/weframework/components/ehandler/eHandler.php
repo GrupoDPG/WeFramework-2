@@ -12,9 +12,9 @@ class eHandler
      * setError
      * @param $message
      * @example
-     * helpers/weframework/components/ehandler/eHandler::setError('Crash!');
+     * helpers/weframework/components/ehandler/eHandler::setMessage('Crash!');
      */
-    public static function setError($message)
+    public static function setMessage($message)
     {
         Session::Set('WE_EHANDLER_MESSAGE', $message, true);
     }

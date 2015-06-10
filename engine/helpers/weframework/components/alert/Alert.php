@@ -13,8 +13,6 @@ class Alert
         'error' => array(),
     );
 
-    private static $title = null;
-
     /**
      * @param $message
      * @return string
@@ -49,6 +47,43 @@ class Alert
     public static function Error($message)
     {
         self::$messages['error'][] = $message;
+    }
+
+
+    /**
+     * @return string
+     */
+    public static function getMessage()
+    {
+        $alert = '';
+        if(count(self::$messages) > 0)
+        {
+            //Success
+            if(count(self::$messages['success']) > 0)
+            {
+                $alert =  implode('<br/>', self::$messages['success']);
+            }
+
+            //Warning
+            if(count(self::$messages['warning']) > 0)
+            {
+                $alert =  implode('<br/>', self::$messages['warning']);
+            }
+
+            //Info
+            if(count(self::$messages['info']) > 0)
+            {
+                $alert =  implode('<br/>', self::$messages['info']);
+            }
+
+            //Error
+            if(count(self::$messages['error']) > 0)
+            {
+                $alert =  implode('<br/>', self::$messages['error']);
+            }
+        }
+
+        return $alert;
     }
 
 
