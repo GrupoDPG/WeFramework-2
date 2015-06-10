@@ -42,4 +42,16 @@ class Post
     {
         return $_POST;
     }
+
+    /**
+     * @param $key
+     * @return null|string
+     */
+    public function ValueOf($key)
+    {
+        if(isset($_POST[$key]))
+            return $_POST[$key];
+
+        return null;
+    }
 }
