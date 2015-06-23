@@ -122,6 +122,8 @@ class View
         //URL requisitada
         $url = explode('/', $url_page);
 
+        //die(var_dump($uri, $url));
+
         //Variáveis de controle
         $flag = 0;
         $flag_final = false;
@@ -140,8 +142,8 @@ class View
                 }
                 else
                 {
-                    break;
                     $flag_final = false;
+                    break;
                 }
             }
 
