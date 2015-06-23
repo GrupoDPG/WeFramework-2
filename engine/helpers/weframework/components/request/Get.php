@@ -25,25 +25,20 @@ class Get
         $uri = $_SERVER['REQUEST_URI'];
         //Separando a pasta do projeto da url
         $uri_ex = explode($script_path, $uri);
-        $uri = trim($uri_ex[1], '/');
+        for($i = 0; $i < count($uri_ex); $i++)
+            if(empty($uri_ex[$i]))
+                unset($uri_ex[$i]);
 
+        $uri = array_values($uri_ex);
         //Verificando se o parâmetro passado é um número
         if(is_numeric($name))
         {
             $key = (int) $name;
-            //Existe / ?
-            if(strpos($uri, '/') !== false)
-            {
-                //Parâmetros URL
-                $url = explode('/', $uri);
-                if(isset($url[$key]))
-                    return $url[$key];
-            }
+            if(isset($uri[$key]))
+                return $uri[$key];
             else
-            {
-                if($key == 0)
-                    return $uri;
-            }
+                return null;
+
         }
         //Parâmetro por referência de nome
         else
