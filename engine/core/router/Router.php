@@ -221,7 +221,7 @@ class Router
         //wrapper protocol - http, https, ftp...
         $wrapper = (!empty(self::$default_config['wrapper']) ? self::$default_config['wrapper'] : 'http') . '://';
         //Url base
-        $url = $wrapper . $_SERVER['HTTP_HOST'] . '/' . self::$base_url . '/';
+        $url = $wrapper . $_SERVER['HTTP_HOST'] . '/' . ((self::$base_url != "") ? self::$base_url . '/' : "");
 
         if(defined('WE_IS_HOT_THEME') && WE_IS_HOT_THEME)
         {
