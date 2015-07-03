@@ -43,6 +43,7 @@ class Get
         //Parâmetro por referência de nome
         else
         {
+            $uri = implode('/', $uri);
             $params_names = $this->UrlParamName();
             //Existe / ?
             if(strpos($uri, '/') !== false)

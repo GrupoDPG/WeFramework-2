@@ -96,7 +96,7 @@ class View
             $aux = explode('?', $original_uri);
             $original_uri = $aux[0];
         }
-        
+
         //Verificamos se a requisão é para a página inicial
         if($url_page == 'index' && $original_uri == '')
             return true;
