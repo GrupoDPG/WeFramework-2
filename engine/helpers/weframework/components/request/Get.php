@@ -49,10 +49,12 @@ class Get
             if(strpos($uri, '/') !== false)
             {
                 $key = array_search($name, $params_names);
-                //Parâmetros URL
-                $url = explode('/', $uri);
-                if(isset($url[$key]))
-                    return $url[$key];
+                if($key) {
+                    //Parâmetros URL
+                    $url = explode('/', $uri);
+                    if (isset($url[$key]))
+                        return $url[$key];
+                }
             }
             elseif($name == $params_names[0])
                 return $uri;
