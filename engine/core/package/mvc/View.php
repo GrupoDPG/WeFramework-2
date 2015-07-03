@@ -91,6 +91,12 @@ class View
         $original_uri = strtolower(WE_URI_PROJECT);
         $url_page = strtolower($url_page);
 
+        //Retirando parâmetros
+        if(strpos($original_uri, '?') !== false){
+            $aux = explode('?', $original_uri);
+            $original_uri = $aux[0];
+        }
+        
         //Verificamos se a requisão é para a página inicial
         if($url_page == 'index' && $original_uri == '')
             return true;
