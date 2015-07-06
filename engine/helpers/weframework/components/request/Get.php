@@ -33,6 +33,9 @@ class Get
         //Verificando se o parâmetro passado é um número
         if(is_numeric($name))
         {
+            $uri = trim($uri[0], '/');
+            $uri = explode('/', $uri);
+
             $key = (int) $name;
             if(isset($uri[$key]))
                 return $uri[$key];
