@@ -45,8 +45,7 @@ class Post
      * @param $value
      */
     public function Set($index, $value){
-        if(isset($_POST[$index]))
-            $_POST[$index] = $value;
+        $_POST[$index] = $value;
     }
 
     /**
