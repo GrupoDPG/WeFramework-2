@@ -41,6 +41,15 @@ class Post
     }
 
     /**
+     * @param $index
+     * @param $value
+     */
+    public function Set($index, $value){
+        if(isset($_POST[$index]))
+            $_POST[$index] = $value;
+    }
+
+    /**
      * GetAll
      * Retorna toddos os índices de POST
      * @return mixed
@@ -61,5 +70,30 @@ class Post
                 return $_POST[$key];
 
         return null;
+    }
+
+
+    /**
+     * @param null $array
+     * @return null
+     */
+    public static function Sanitize($array = null){
+        if(!isset($array))
+            $array = $_POST;
+
+        if($array) {
+            foreach($array as $k => $p){
+                if(!is_array($p)){
+                    $array[$k] = trim($p);
+                    if(empty($p))
+                        $array[$k] = null;
+                } else
+                    self::Sanitize($p);
+            }
+            if(!isset($array) && $_POST)
+                $_POST = $array;
+        }
+        return $array;
+
     }
 }
