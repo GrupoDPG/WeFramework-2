@@ -209,19 +209,19 @@ class Router
             }
             else
             {
-                self::$base_url = trim(dirname($_SERVER['SCRIPT_NAME']), '/');
+                self::$base_url = trim(str_replace('\\', '/', dirname($_SERVER['SCRIPT_NAME'])), '/');
                 return self::$base_url;
             }
         }
         else
         {
-            self::$base_url = trim(dirname($_SERVER['SCRIPT_NAME']), '/');
+            self::$base_url = trim(str_replace('\\', '', dirname($_SERVER['SCRIPT_NAME']))) . '/';
         }
 
         //wrapper protocol - http, https, ftp...
         $wrapper = (!empty(self::$default_config['wrapper']) ? self::$default_config['wrapper'] : 'http') . '://';
         //Url base
-        $url = $wrapper . $_SERVER['HTTP_HOST'] . '/' . ((self::$base_url != "") ? self::$base_url . '/' : "");
+        $url = $wrapper . $_SERVER['HTTP_HOST'] . ((self::$base_url != "") ? self::$base_url : "/");
 
         if(defined('WE_IS_HOT_THEME') && WE_IS_HOT_THEME)
         {
@@ -233,7 +233,6 @@ class Router
                     $url = $url . WE_THEME . '/';
             }
         }
-
         return rtrim($url, '/') . '/';
     }
 
