@@ -125,7 +125,6 @@ class Auth
                             Session::Set('WE_AUTH_ERROR', 'Sessão expirada.');
                     }
                 }
-
                 if(trim(WE_URL, '/') != trim(WE_SECURITY_AUTH_PAGE, '/'))
                     header('Location: ' . RealBaseUrl() . WE_SECURITY_AUTH_PAGE);
             }
