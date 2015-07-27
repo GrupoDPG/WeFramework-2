@@ -15,12 +15,17 @@ use helpers\weframework\components\request\Request;
 abstract class Controller
 {
     private $flag = false;
-
+    
+    /**
+     * @return \mvc\loaders\ControllerLoader;
+     */
     public function Load()
     {
         return \mvc\loaders\ControllerLoader::GetInstance()->Load();
     }
-
+    /**
+     * @return \mvc\loaders\ControllerLoader;
+     */
     public function Loaded()
     {
         return \mvc\loaders\ControllerLoader::GetInstance()->Loaded();
