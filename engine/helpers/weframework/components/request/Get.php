@@ -20,11 +20,12 @@ class Get
             return $_GET[$name];
 
         //Project Folder
-        $script_path = dirname($_SERVER['SCRIPT_NAME']);
+        $script_path = dirname($_SERVER['SCRIPT_NAME']) . '/';
         //URI
         $uri = $_SERVER['REQUEST_URI'];
         //Separando a pasta do projeto da url
         $uri_ex = explode($script_path, $uri);
+
         for($i = 0; $i < count($uri_ex); $i++)
             if(empty($uri_ex[$i]))
                 unset($uri_ex[$i]);

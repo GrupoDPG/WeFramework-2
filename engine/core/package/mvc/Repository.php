@@ -28,7 +28,7 @@ abstract class Repository
 
     /**
      * Instância do PDO
-     * @var null
+     * @var \PDO
      */
     public $DB = null;
 

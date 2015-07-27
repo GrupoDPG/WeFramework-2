@@ -126,7 +126,7 @@ class Auth
                     }
                 }
 
-                if(WE_URL != ('/'.WE_REAL_BASE_URL . '/' . WE_SECURITY_AUTH_PAGE))
+                if(trim(WE_URL, '/') != trim(WE_SECURITY_AUTH_PAGE, '/'))
                     header('Location: ' . RealBaseUrl() . WE_SECURITY_AUTH_PAGE);
             }
             elseif(self::Auth() && RequirePage(WE_SECURITY_AUTH_PAGE) && WE_SECURITY_AUTH_PAGE != WE_THEME_PAGE_INDEX)
