@@ -11,8 +11,8 @@ class LoginModel extends Model
 {
     public function Auth()
     {
-        $validate = Validator::key('user', Validator::string()->notEmpty()->length(3, 15))
-            ->key('passwd', Validator::string()->notEmpty()->length(5, 10))
+        $validate = Validator::key('user', Validator::string()->notEmpty())
+            ->key('passwd', Validator::string()->notEmpty())
             ->validate(Request::Post()->GetAll());
 
         if($validate)
