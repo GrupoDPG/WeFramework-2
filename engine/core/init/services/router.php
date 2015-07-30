@@ -19,7 +19,6 @@ $rs->get('/(:params+)', function() use ($rs, $router) {
         if(isset($_GET['error']))
             $rs->redirect($router->BaseURL() . $_GET['error']);
 
-
         // Header HTTP
         $http_header = $rs->response->getStatus();
 
@@ -74,7 +73,6 @@ $rs->get('/(:params+)', function() use ($rs, $router) {
                     $page = \helpers\weframework\components\request\Request::Get()->Get(1);
             }
             define('WE_PAGE', $page);
-
 
             //Walking URL - Caso seja um tema, descartamos o controller
             if(WE_IS_HOT_THEME)
