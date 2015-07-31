@@ -367,7 +367,7 @@ class Router
 
         if(!empty($url_base) && strpos($uri, $url_base) !== false)
         {
-            $uri = str_replace($url_base.'/', '' , $uri);
+            $uri = str_replace($url_base, '' , $uri);
         }
 
         if(WE_IS_HOT_THEME)
@@ -380,6 +380,8 @@ class Router
 
         self::$uri_project = trim($uri, '/');
     }
+
+
 
     /**
      * GetUriProject

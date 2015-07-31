@@ -30,7 +30,6 @@ if($router->GetStatus())
     {
         \core\init\Service::SetError('render.php', $e->getMessage());
     }
-
 }
 else
 {

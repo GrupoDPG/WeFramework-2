@@ -195,7 +195,6 @@ class Render
         {
             $theme_path = ((WE_THEME == '') ? WE_THEME_DIR  : WE_THEME_DIR . WE_THEME . DS) . 'index.php';
         }
-
         self::$render_theme = $theme_path;
     }
 
@@ -280,6 +279,7 @@ class Render
                 }
 
             }
+
             //Theme template index
             if(isset(self::$render_theme))
             {

@@ -9,6 +9,7 @@
  * @version 0.1 - 11/03/2014
  */
 namespace home\controller;
+use home\model\HomeModel;
 use \mvc\Controller;
 
 class HomeController extends Controller
@@ -25,7 +26,6 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-
         $this->AddController('home/hello', '/home/controller/HelloController');
         $this->AddController('home/abc/dfg/uhul', '/home/controller/HelloController', 'say');
     }
@@ -55,13 +55,11 @@ class HomeController extends Controller
      */
     public function Index()
     {
-        $this->Load()->Model('HomeModel');
-        //Or $model = new \home\model\HomeModel
-
+        $model = new HomeModel();
         //Verifica se outras camadas foram carregadas
         if($this->Loaded())
         {
-            $welcome_message = $this->HomeModel->Welcome();
+            $welcome_message = $model->Welcome();
 
             /*
              * Enviando dados para a View
