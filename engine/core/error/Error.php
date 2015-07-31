@@ -94,7 +94,7 @@ class Error
 
             case 'production':
                 ini_set('display_errors', 'Off');
-                error_reporting(-1);
+                error_reporting(0);
                 break;
             case 'custom':
                 if(isset(self::$configuration_error['display_custom_errors']))
