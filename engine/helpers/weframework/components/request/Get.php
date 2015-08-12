@@ -34,7 +34,8 @@ class Get
         //Verificando se o parâmetro passado é um número
         if(is_numeric($name))
         {
-            $uri = trim($uri[0], '/');
+            $uri = preg_replace('@\?.*@', '', $uri[0]);
+            $uri = trim($uri, '/');
             $uri = explode('/', $uri);
 
             $key = (int) $name;
