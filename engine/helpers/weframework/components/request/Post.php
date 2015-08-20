@@ -84,15 +84,14 @@ class Post
             foreach($array as $k => $p){
                 if(!is_array($p)){
                     $array[$k] = trim($p);
-                    if(empty($p))
+                    if($p == "")
                         $array[$k] = null;
                 } else
                     self::Sanitize($p);
             }
-            if(!isset($array) && $_POST)
+            if(isset($array) && is_array($array) && count($array) > 0 && $_POST)
                 $_POST = $array;
         }
         return $array;
-
     }
 }

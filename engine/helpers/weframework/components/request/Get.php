@@ -82,46 +82,22 @@ class Get
 
     /**
      * GetAll
-     * Retorna toddos os índices de POST
+     * Retorna todos os índices de POST
      * @return mixed
      */
     public function GetAll()
     {
         //Project Folder
-        $script_path = dirname($_SERVER['SCRIPT_NAME']);
+        $script_path = str_replace('\\', "/", dirname($_SERVER['SCRIPT_NAME']));
         //URI
-        $uri = $_SERVER['REQUEST_URI'];
+        $uri = trim($_SERVER['REQUEST_URI'], '/');
+        if(strpos($uri, '?') !== true){
+            $uri = preg_replace('@\?.+@', '', $uri);
+        }
         //Separando a pasta do projeto da url
-        $uri_ex = explode($script_path, $uri);
-        $uri = trim($uri_ex[1], '/');
-
-        $parameters = null;
-        //Existe / ?
-        if(strpos($uri, '/') !== false)
-        {
-            //Parâmetros URL
-            $pre_parameters = explode('/', $uri);
-            //Limpeza de dados
-            $i = 0;
-            foreach($pre_parameters as $k => $v)
-            {
-                if(strpos($v, '?') === false)
-                {
-                    $parameters[$i] = $v;
-                    $i++;
-                }
-            }
-        }
-        else
-        {
-            $parameters[0] = $uri;
-        }
-
-        // $_GET
+        $parameters = explode($script_path, $uri);
         if(count($_GET) > 0)
-        {
             $parameters = array_merge($parameters, $_GET);
-        }
 
         return $parameters;
     }
