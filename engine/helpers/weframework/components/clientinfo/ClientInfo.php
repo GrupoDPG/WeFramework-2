@@ -81,4 +81,12 @@ class ClientInfo
 
         return $_SERVER['HTTP_REFERER'];
     }
+
+    /**
+     * Return pc user name
+     * @return string
+     */
+    public function Hostname(){
+        return gethostname();
+    }
 }
