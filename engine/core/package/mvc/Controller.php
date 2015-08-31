@@ -47,12 +47,12 @@ abstract class Controller
                     {
                         //URL
                         $url = Request::Get()->GetAll();
+
                         //Define url
-                        $uri = implode('/', $url);
+                        $uri = trim(str_replace(WE_REAL_BASE_URL, '', implode('/', $url)), '/');
                         $route_uri = trim(str_replace($route, '', $uri), '/');
                         $url = explode('/', $route_uri);
                         $class_method = $url[0];
-
                         if(empty($class_method))
                         {
                             if(method_exists($controller, 'Index'))
