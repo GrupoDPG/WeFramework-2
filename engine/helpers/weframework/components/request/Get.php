@@ -83,9 +83,10 @@ class Get
     /**
      * GetAll
      * Retorna todos os índices de POST
+     * @param bool $inclusive_url_params
      * @return mixed
      */
-    public function GetAll()
+    public function GetAll($inclusive_url_params = true)
     {
         //Project Folder
         $script_path = str_replace('\\', "/", dirname($_SERVER['SCRIPT_NAME']));
@@ -96,7 +97,7 @@ class Get
         }
         //Separando a pasta do projeto da url
         $parameters = explode($script_path, $uri);
-        if(count($_GET) > 0)
+        if(count($_GET) > 0 && $inclusive_url_params)
             $parameters = array_merge($parameters, $_GET);
 
         return $parameters;

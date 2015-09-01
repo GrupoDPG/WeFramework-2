@@ -46,7 +46,7 @@ abstract class Controller
                     else
                     {
                         //URL
-                        $url = Request::Get()->GetAll();
+                        $url = Request::Get()->GetAll(false);
 
                         //Define url
                         $uri = trim(str_replace(WE_REAL_BASE_URL, '', implode('/', $url)), '/');
