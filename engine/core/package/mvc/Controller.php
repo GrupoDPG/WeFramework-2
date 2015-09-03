@@ -31,6 +31,11 @@ abstract class Controller
         return \mvc\loaders\ControllerLoader::GetInstance()->Loaded();
     }
 
+    /**
+     * @param $route
+     * @param $controller
+     * @param null $method
+     */
     public function AddController($route, $controller, $method = null)
     {
         if($this->flag === false)
@@ -50,7 +55,7 @@ abstract class Controller
 
                         //Define url
                         $uri = trim(str_replace(WE_REAL_BASE_URL, '', implode('/', $url)), '/');
-                        $route_uri = trim(str_replace($route, '', $uri), '/');
+                        $route_uri = trim(preg_replace('@'.$route.'@', '', $uri), '/');
                         $url = explode('/', $route_uri);
                         $class_method = $url[0];
                         if(empty($class_method))
