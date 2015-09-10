@@ -114,7 +114,7 @@ class View
                     $url_page = $page;
                     break;
                 }
-                elseif(strpos($page, '/'))
+                elseif(strpos($page, '/') && substr_count($page, '/') == substr_count($original_uri, '/'))
                 {
                     $url_page = $page;
                     break;
