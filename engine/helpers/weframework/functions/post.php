@@ -18,3 +18,14 @@ function printPostOf($name){
         echo $value;
     echo '';
 }
+
+/**
+ * @return bool
+ */
+function isPost(){
+    return ($_POST) ? true : false;
+}
+
+function resetPost(){
+    \helpers\weframework\components\request\Request::Post()->Reset();
+}

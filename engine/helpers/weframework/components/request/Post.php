@@ -94,4 +94,16 @@ class Post
         }
         return $array;
     }
+
+    /**
+     * @return void
+     */
+    public function Reset(){
+        if(self::IsPost()){
+            if(count($_POST) > 0){
+                foreach($_POST as $k => $v)
+                    unset($_POST[$k]);
+            }
+        }
+    }
 }
