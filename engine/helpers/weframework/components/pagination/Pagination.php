@@ -201,7 +201,7 @@ class Pagination{
         return $this;
     }
 
-    
+
     private function preparePageValue(){
         if(!$this->pageDefined)
             if(isset($_GET[$this->pageVar]))

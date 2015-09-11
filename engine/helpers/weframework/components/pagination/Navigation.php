@@ -66,8 +66,8 @@ class Navigation{
     }
 
     public function next(){
-        if (!$this->hasResult(true) || $this->pg->getQueryRows() < $this->resultsPerPage())
-           return false;
+        if (!$this->hasResult(true) || $this->pg->getQueryRows() < $this->resultsPerPage() || $this->lastPage() == $this->pg->getPage())
+            return false;
 
         return $this->pg->getPage() + 1;
 
@@ -75,7 +75,7 @@ class Navigation{
 
     public function prev(){
         if($this->pg->getPage() <=1 )
-                return false;
+            return false;
         else
             return $this->pg->getPage() - 1;
     }
@@ -131,5 +131,39 @@ class Navigation{
 
     public function lastPage(){
         return ceil($this->total() / $this->resultsPerPage());
+    }
+
+    public function bootstrapNavigation(){
+        ?>
+        <ul class="pagination pagination-sm pull-left">
+            <li>Mostrando <?=$this->showing()?> a <?=$this->showingOf()?> de <?=$this->total()?></li>
+        </ul>
+        <ul class="pagination pagination-sm pull-right">
+            <?php
+            if($this->prev()) {
+                echo '<li><a href="'.BaseUrl().'clients?page=1"><i class="fa fa-angle-left"></i><i class="fa fa-angle-left"></i></a></li>';
+                echo '<li><a href="'.BaseUrl().'clients?page='.$this->prev().'"><i class="fa fa-angle-left"></i></a></li>';
+            }
+            ?>
+            <?php
+            if(count($this->range()) > 0){
+                $page_var = $this->pg->getPageVar();
+                foreach($this->range() as $i){
+                    if($this->pg->getPage() == $i || $this->pg->getPage() == '' && $i == 1)
+                        $class = ' class="active"';
+                    else
+                        $class = '';
+                    echo '<li'.$class.'><a href="'.BaseUrl().'clients?'.$this->pg->getPageVar().'='.$i.'">'.$i.'</a></li>';
+                }
+            }
+            ?>
+            <?php
+            if($this->next()) {
+                echo '<li><a href="'.BaseUrl().'clients?page='.$this->next().'"><i class="fa fa-angle-right"></i></a></li>';
+                echo '<li><a href="'.BaseUrl().'clients?page='.$this->lastPage().'"><i class="fa fa-angle-right"></i><i class="fa fa-angle-right"></i></a></li>';
+            }
+            ?>
+        </ul>
+        <?php
     }
 }
